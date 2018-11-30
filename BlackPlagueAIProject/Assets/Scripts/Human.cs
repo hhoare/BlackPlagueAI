@@ -11,37 +11,48 @@ public class Human : MonoBehaviour
     [SerializeField]
     float infectedRadius;
     [SerializeField]
-    float movementSpeed;
+    float speed;
     [SerializeField]
     float lifeSpan;
     [SerializeField]
     float spawnRate;
+    [SerializeField]
+    float directionUpdateTime; //How long before the direction is updated
+    private float countDownTime; //Used to copy directionUpdateTime for decrementing
+    private Rigidbody2D rb;
+    private  float xMin = -1;
+    private float xMax = 1;
+    private float yMin = -1;
+    private float yMax = 1;
+
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        countDownTime = directionUpdateTime;
+    }
+
+    private void FixedUpdate()
+    {
+        countDownTime -= Time.deltaTime;
+        if(countDownTime<=0)
+        {
+            Move();
+            countDownTime = directionUpdateTime; //Resets countDownTime
+        }
+    }
 
     public void Move()
     {
-        //Possible Movement Methods:
-        // Randomize 1-10, Each direction (including diagonals and no movement) have 1/10 chance
-        // Add velocity according to direction
-        // If rat in radius, decrease chance of moving in direction
-        // (How to determine the direction? Lots of if Statements?)
-        //
-        // Random (-1,2) for X (-1 to 0 is left) (0 to 1 is stop) (1 to 2 is right)
-        // Random (-1,2) for y (-1 to 0 is down) (0 to 1 is stop) (1 to 2 is up)
-        // Add velocity based on directions
-        // If rat in radius, determine position, and get rid of x/y movement in direction of rat, or decrease chance of it. 
-        // Random (-0.5(?), 1) for X
-        // Random (-1, 1) for Y
-        // Makes less likely to move left towards rat. 
+        rb.velocity=RandomVector(xMin, xMax, yMin, yMax);
 
-        //Used to determine chances of human moving in certain directions
-        float xMin = -1; 
-        float xMax = 2;
-        float yMin = -1;
-        float yMax = 2;
+    }
 
-        float xDirection = Random.Range(xMin, xMax);
-        float yDirection = Random.Range(yMin, yMax);
-
+    private Vector2 RandomVector(float xMin, float xMax, float yMin, float yMax)
+    {
+        var x = Random.Range(xMin, xMax);
+        var y = Random.Range(yMin, yMax);
+        return new Vector2(x*speed, y*speed);
     }
 
 }

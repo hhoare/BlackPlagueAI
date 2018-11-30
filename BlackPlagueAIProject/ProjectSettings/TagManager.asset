@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Rat
+  - Uninfected
+  - Infected
   layers:
   - Default
   - TransparentFX
@@ -16,10 +18,10 @@ TagManager:
   - 
   - Background
   - Foreground
-  - 
-  - 
-  - 
-  - 
+  - Rat
+  - Uninfected
+  - Infected
+  - Flea
   - 
   - 
   - 
