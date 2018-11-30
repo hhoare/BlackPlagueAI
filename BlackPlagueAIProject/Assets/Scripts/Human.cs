@@ -114,7 +114,10 @@ public class Human : MonoBehaviour
             float tempXMax = xMax;
             float tempYMin = yMin;
             float tempYMax = yMax;
-           
+
+        Debug.Log(downInfectedDetected);
+        Debug.Log(leftInfectedDetected);
+        Debug.Log(rightInfectedDetected);
         //===========================================================================================================
         //If statements used to decrease chance of moving towards rat/infected, and increase chance of moving towards uninfected
         //===========================================================================================================
