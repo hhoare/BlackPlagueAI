@@ -169,11 +169,12 @@ public class Human : MonoBehaviour
         {
             tempXMax = 0.2f;
         }
-        rb.velocity=RandomVector(tempXMin, tempXMax, tempYMin, tempYMax);
+
+        rb.velocity=RandomVector(tempXMin, tempXMax, tempYMin, tempYMax); //Change velocity based on a random vector with the mins and maxes
 
     }
 
-    private Vector2 RandomVector(float xMin, float xMax, float yMin, float yMax)
+    private Vector2 RandomVector(float xMin, float xMax, float yMin, float yMax) //vector for movement
     {
         var x = Random.Range(xMin, xMax);
         var y = Random.Range(yMin, yMax);
