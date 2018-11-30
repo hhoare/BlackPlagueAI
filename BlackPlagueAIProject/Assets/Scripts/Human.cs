@@ -28,7 +28,8 @@ public class Human : MonoBehaviour
     float yMin = -1;
     [SerializeField]
     float yMax = 1;
-    
+
+    private int directionCounter = 5; //Used to make human more likely to travel in same direction for however many turns
     private float ratVariable = 0.75f; //Used to make human less likely to move towards rats in detection radius
     private float humanVariable = 0.5f; //Used to make human more likely to move towards other humans in detection radius
     private float infectedVariable = 0.8f; //Used to make human less likely to move towards infected in detection radius
@@ -107,34 +108,32 @@ public class Human : MonoBehaviour
     public void Move()
     {
         ColliderCheck();
-        Debug.Log(upHumanDetected);
-        Debug.Log(leftHumanDetected);
-        Debug.Log(rightHumanDetected);
-        Debug.Log(downHumanDetected);
         //Used to temporarily change x/y max/min
-        float tempXMin = xMin;
-         float tempXMax = xMax;
-         float tempYMin = yMin;
-         float tempYMax = yMax;
+
+            float tempXMin = xMin;
+            float tempXMax = xMax;
+            float tempYMin = yMin;
+            float tempYMax = yMax;
+           
         //===========================================================================================================
-        //While statements used to decrease chance of moving towards rat, and increase chance of moving towards human
+        //If statements used to decrease chance of moving towards rat/infected, and increase chance of moving towards uninfected
         //===========================================================================================================
         
         if (upHumanDetected==true)
         {
-            tempYMin = -0.5f;
+            tempYMax = 2f;
         }
         if (downHumanDetected == true)
         {
-            tempYMax = 0.5f;
+            tempYMin = -2f;
         }
         if (leftHumanDetected == true)
         {
-            tempXMax = 0.5f;
+            tempXMin = -2;
         }
         if (rightHumanDetected == true)
         {
-            tempXMin = -0.5f;
+            tempXMax = 2f;
         }
 
         if (upRatDetected == true)
