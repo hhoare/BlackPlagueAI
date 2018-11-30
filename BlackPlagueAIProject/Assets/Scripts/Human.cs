@@ -114,10 +114,6 @@ public class Human : MonoBehaviour
             float tempXMax = xMax;
             float tempYMin = yMin;
             float tempYMax = yMax;
-
-        Debug.Log(downInfectedDetected);
-        Debug.Log(leftInfectedDetected);
-        Debug.Log(rightInfectedDetected);
         //===========================================================================================================
         //If statements used to decrease chance of moving towards rat/infected, and increase chance of moving towards uninfected
         //===========================================================================================================
@@ -184,13 +180,14 @@ public class Human : MonoBehaviour
         return new Vector2(x*speed, y*speed);
     }
 
-    private void ColliderCheck()
+    private void ColliderCheck() //Used to check whether or not there are rats/uninfected/infected in range
     {
-        int humans = 0;
-        int infected = 0;
-        if (gameObject.layer == LayerMask.NameToLayer("Uninfected"))
+        int humans = 0; //Used to set the base amount of humans needed to effect
+        int infected = 0; //Used to set the base amount of infected needed to effect
+
+        if (gameObject.layer == LayerMask.NameToLayer("Uninfected")) //If the current human is uninfected
         {
-            humans = 1;
+            humans = 1; //There needs to be two uninfected in range, as the colliders see the current one
             infected = 0;
         }
         if(gameObject.layer==LayerMask.NameToLayer("Infected"))
@@ -198,6 +195,8 @@ public class Human : MonoBehaviour
             infected = 1;
             humans = 0;
         }
+
+        //   Bool     Collider2D   Overlapping   ContactFilter     Array        Amount
         upRatDetected = upRat.OverlapCollider(ratContactFilter, upRatDetection) > 0;
         downRatDetected = downRat.OverlapCollider(ratContactFilter, downRatDetection) > 0;
         leftRatDetected = leftRat.OverlapCollider(ratContactFilter, leftRatDetection) > 0;
