@@ -2,388 +2,192 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rat : MonoBehaviour {
-
-    #region private fields
+public class Rat : MonoBehaviour
+{
+    [SerializeField]
+    float ratDetectRadius;
+    [SerializeField]
+    float humanDetectRadius;
+    [SerializeField]
+    float infectedRadius;
+    [SerializeField]
+    float speed;
+    [SerializeField]
+    float lifeSpan;
+    [SerializeField]
+    float spawnRate;
+    [SerializeField]
+    float directionUpdateTime; //How long before the direction is updated
+    private float countDownTime; //Used to copy directionUpdateTime for decrementing
     private Rigidbody2D rb;
-    private float countdownTime;
-    
-    private bool humanInOuterQuad1;
-    private bool humanInOuterQuad2;
-    private bool humanInOuterQuad3;
-    private bool humanInOuterQuad4;
-    private bool[] humanOuterQuads;
+    [SerializeField]
+    float xMin = -1;
+    [SerializeField]
+    float xMax = 1;
+    [SerializeField]
+    float yMin = -1;
+    [SerializeField]
+    float yMax = 1;
 
-    private bool humanInInnerQuad1;
-    private bool humanInInnerQuad2;
-    private bool humanInInnerQuad3;
-    private bool humanInInnerQuad4;
-    private bool[] humanInnerQuads;
+    private int directionCounter = 5; //Used to make human more likely to travel in same direction for however many turns
+    private float ratVariable = 0.75f; //Used to make human less likely to move towards rats in detection radius
+    private float humanVariable = 0.5f; //Used to make human more likely to move towards other humans in detection radius
+    private float infectedVariable = 0.8f; //Used to make human less likely to move towards infected in detection radius
+    [SerializeField]
+    ContactFilter2D uninfectedContactFilter;
+    [SerializeField]
+    ContactFilter2D infectedContactFilter;
+    [SerializeField]
+    ContactFilter2D ratContactFilter;
 
-    private bool ratInQuad1;
-    private bool ratInQuad2;
-    private bool ratInQuad3;
-    private bool ratInQuad4;
-    private bool[] ratQuads;
+    private bool upCloseDetected;
+    private bool downCloseDetected;
+    private bool leftCloseDetected;
+    private bool rightCloseDetected;
 
-    private List<bool> trueHumanOuterQuads = new List<bool>();
-    private List<bool> trueHumanInnerQuads = new List<bool>();
-    private List<bool> trueRatQuads = new List<bool>();
+    private bool upHumanDetected;
+    private bool downHumanDetected;
+    private bool leftHumanDetected;
+    private bool rightHumanDetected;
 
-    private bool humansInOuterCircle;
-    private bool humansInInnerCircle;
-    private bool ratsInCircle;
+    private bool upInfectedDetected;
+    private bool downInfectedDetected;
+    private bool leftInfectedDetected;
+    private bool rightInfectedDetected;
 
-    private Collider2D[] innerQuad1HitDetectionResults = new Collider2D[50];
-    private Collider2D[] innerQuad2HitDetectionResults = new Collider2D[50];
-    private Collider2D[] innerQuad3HitDetectionResults = new Collider2D[50];
-    private Collider2D[] innerQuad4HitDetectionResults = new Collider2D[50];
+    private Collider2D[] upCloseDetection = new Collider2D[50];
+    private Collider2D[] downCloseDetection = new Collider2D[50];
+    private Collider2D[] leftCloseDetection = new Collider2D[50];
+    private Collider2D[] rightCloseDetection = new Collider2D[50];
 
-    private Collider2D[] outerQuad1HumanHitDetectionResults = new Collider2D[50];
-    private Collider2D[] outerQuad2HumanHitDetectionResults = new Collider2D[50];
-    private Collider2D[] outerQuad3HumanHitDetectionResults = new Collider2D[50];
-    private Collider2D[] outerQuad4HumanHitDetectionResults = new Collider2D[50];
+    private Collider2D[] upHumanDetection = new Collider2D[50];
+    private Collider2D[] downHumanDetection = new Collider2D[50];
+    private Collider2D[] leftHumanDetection = new Collider2D[50];
+    private Collider2D[] rightHumanDetection = new Collider2D[50];
 
-    private Collider2D[] quad1RatHitDetectionResults = new Collider2D[50];
-    private Collider2D[] quad2RatHitDetectionResults = new Collider2D[50];
-    private Collider2D[] quad3RatHitDetectionResults = new Collider2D[50];
-    private Collider2D[] quad4RatHitDetectionResults = new Collider2D[50];
+    private Collider2D[] upInfectedDetection = new Collider2D[50];
+    private Collider2D[] downInfectedDetection = new Collider2D[50];
+    private Collider2D[] leftInfectedDetection = new Collider2D[50];
+    private Collider2D[] rightInfectedDetection = new Collider2D[50];
 
-    private float minXFloat;
-    private float maxXFloat;
-    private float minYFloat;
-    private float maxYFloat;
+    //DetectionTriggers
+    [SerializeField]
+    Collider2D upClose;
+    [SerializeField]
+    Collider2D downClose;
+    [SerializeField]
+    Collider2D leftClose;
+    [SerializeField]
+    Collider2D rightClose;
+    [SerializeField]
+    Collider2D upHuman;
+    [SerializeField]
+    Collider2D downHuman;
+    [SerializeField]
+    Collider2D leftHuman;
+    [SerializeField]
+    Collider2D rightHuman;
 
-    private System.Random rnd = new System.Random();
-    #endregion
 
-    #region serialized fields
-    [SerializeField]
-    private float time;
-    [SerializeField]
-    private float minXRandomFloat;
-    [SerializeField]
-    private float maxXRandomFloat;
-    [SerializeField]
-    private float minYRandomFloat;
-    [SerializeField]
-    private float maxYRandomFloat;
-    [SerializeField]
-    private float speed;
-
-    [SerializeField]
-    private Collider2D outerQuad1DetectTrigger;
-    [SerializeField]
-    private Collider2D outerQuad2DetectTrigger;
-    [SerializeField]
-    private Collider2D outerQuad3DetectTrigger;
-    [SerializeField]
-    private Collider2D outerQuad4DetectTrigger;
-
-    [SerializeField]
-    private Collider2D innerQuad1DetectTrigger;
-    [SerializeField]
-    private Collider2D innerQuad2DetectTrigger;
-    [SerializeField]
-    private Collider2D innerQuad3DetectTrigger;
-    [SerializeField]
-    private Collider2D innerQuad4DetectTrigger;
-
-    [SerializeField]
-    private ContactFilter2D humanContactFilter;
-    [SerializeField]
-    private ContactFilter2D ratContactFilter;
-    #endregion
-
-    // Use this for initialization
-    void Start ()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        countdownTime = 0;
-
-        minXFloat = minXRandomFloat;
-        maxXFloat = maxXRandomFloat;
-        minYFloat = minYRandomFloat;
-        maxYFloat = maxYRandomFloat;
-
-        humanOuterQuads = new bool[] {humanInOuterQuad1, humanInOuterQuad2, humanInOuterQuad3, humanInOuterQuad4};
-        humanInnerQuads = new bool[] {humanInInnerQuad1, humanInInnerQuad2, humanInInnerQuad3, humanInInnerQuad4};
-        ratQuads = new bool[] {ratInQuad1, ratInQuad2, ratInQuad3, ratInQuad4};
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate ()
-    {
-        //Debug.Log(trueHumanInnerQuads.Count);
-        //Debug.Log(trueHumanOuterQuads.Count);
-        //Debug.Log(trueRatQuads.Count);
-
-        
-        ChangeMovementAfterCountdown();
+        countDownTime = directionUpdateTime;
     }
 
-    private void ChangeMovementAfterCountdown()
+    private void FixedUpdate()
     {
-        countdownTime -= Time.deltaTime;
-        if (countdownTime <= 0)
+        countDownTime -= Time.deltaTime;
+        if (countDownTime <= 0)
         {
             Move();
-            countdownTime = time;
+            countDownTime = directionUpdateTime; //Resets countDownTime
         }
     }
 
-    private void Move()
+    public void Move()
     {
-        ChangeMovementVector();
-        rb.velocity = RandomVector(minXFloat, maxXFloat, minYFloat, maxYFloat);
+        ColliderCheck();
+        //Used to temporarily change x/y max/min
+
+        float tempXMin = xMin;
+        float tempXMax = xMax;
+        float tempYMin = yMin;
+        float tempYMax = yMax;
+        //===========================================================================================================
+        //If statements used to decrease chance of moving towards rat/infected, and increase chance of moving towards uninfected
+        //===========================================================================================================
+
+       
+        if (upCloseDetected == true)
+        {
+            tempYMax = 0.4f;
+        }
+        if (downCloseDetected == true)
+        {
+            tempYMin = -0.4f;
+        }
+        if (leftCloseDetected == true)
+        {
+            tempXMin = -0.4f;
+        }
+        if (rightCloseDetected == true)
+        {
+            tempXMax = 0.4f;
+        }
+        
+
+
+        if (upHumanDetected == true||upInfectedDetected==true)
+        {
+            tempYMax = 2f;
+        }
+        if (downHumanDetected == true || upInfectedDetected == true)
+        {
+            tempYMin = -2f;
+        }
+        if (leftHumanDetected == true || upInfectedDetected == true)
+        {
+            tempXMin = -2;
+        }
+        if (rightHumanDetected == true || upInfectedDetected == true)
+        {
+            tempXMax = 2f;
+        }
+
+
+        rb.velocity = RandomVector(tempXMin, tempXMax, tempYMin, tempYMax); //Change velocity based on a random vector with the mins and maxes
+
     }
 
-    private void ClearLists()
-    {
-        trueHumanInnerQuads.Clear();
-        trueHumanOuterQuads.Clear();
-        trueRatQuads.Clear();
-    }
-
-    private void ChangeMovementVector()
-    {
-        colliderCheck();
-        populateTrueBoolLists();
-
-        if (humansInInnerCircle)
-        {
-            populateTrueBoolLists();
-            InnerCircleMovement();
-            Debug.Log("Inner");
-        }
-        else if (humansInOuterCircle)
-        {
-            populateTrueBoolLists();
-            outerCircleMovement();
-            Debug.Log("Outer");
-        }
-        else if (ratsInCircle)
-        {
-            populateTrueBoolLists();
-            ratCircleMovement();
-            Debug.Log("Rat");
-        }
-        else
-        {
-            Debug.Log("None");
-
-            minXFloat = minXRandomFloat;
-            maxXFloat = maxXRandomFloat;
-            minYFloat = minYRandomFloat;
-            maxYFloat = maxYRandomFloat;
-        }
-    }
-
-    private void populateTrueBoolLists()
-    {
-        foreach (bool outer in humanOuterQuads)
-        {
-            if (outer == true)
-            {
-                trueHumanOuterQuads.Add(outer);
-            }
-        }
-        foreach (bool inner in humanInnerQuads)
-        {
-            if (inner == true)
-            {
-                trueHumanInnerQuads.Add(inner);
-            }
-        }
-        foreach (bool rat in ratQuads)
-        {
-            if (rat == true)
-            {
-                trueRatQuads.Add(rat);
-            }
-        }
-    }
-
-    private void InnerCircleMovement()
-    {
-        int randomQuad;
-        if (trueHumanInnerQuads.Count > 1)
-        {
-            randomQuad = rnd.Next(0, trueHumanInnerQuads.Count - 1);
-        }
-        else
-        {
-            randomQuad = 0;
-        }
-
-        if (trueHumanInnerQuads[randomQuad] == humanInInnerQuad1)
-        {
-            minXFloat = minXRandomFloat;
-            maxXFloat = 0;
-            minYFloat = minYRandomFloat;
-            maxYFloat = 0;
-        }
-        else if (trueHumanInnerQuads[randomQuad] == humanInInnerQuad2)
-        {
-            
-            minXFloat = 0;
-            maxXFloat = maxXRandomFloat;
-            minYFloat = minYRandomFloat;
-            maxYFloat = 0;
-        }
-        else if (trueHumanInnerQuads[randomQuad] == humanInInnerQuad3)
-        {
-            minXFloat = 0;
-            maxXFloat = maxXRandomFloat;
-            minYFloat = 0;
-            maxYFloat = maxYRandomFloat;
-        }
-        else if (trueHumanInnerQuads[randomQuad] == humanInInnerQuad4)
-        {
-            minXFloat = minXRandomFloat;
-            maxXFloat = 0;
-            minYFloat = 0;
-            maxYFloat = maxYRandomFloat;
-        }
-        else
-        {
-            minXFloat = minXRandomFloat;
-            maxXFloat = maxXRandomFloat;
-            minYFloat = minYRandomFloat;
-            maxYFloat = maxYRandomFloat;
-        }
-
-        ClearLists();
-    }
-
-    private void outerCircleMovement()
-    {
-        int randomQuad;
-        if (trueHumanOuterQuads.Count > 1)
-        {
-            randomQuad = rnd.Next(0, trueHumanOuterQuads.Count - 1);
-        }
-        else
-        {
-            randomQuad = 0;
-        }
-
-        if (trueHumanOuterQuads[randomQuad] == humanInOuterQuad1)
-        {
-            minXFloat = 0;
-            maxXFloat = maxXRandomFloat;
-            minYFloat = 0;
-            maxYFloat = maxYRandomFloat;
-        }
-        else if (trueHumanOuterQuads[randomQuad] == humanInOuterQuad2)
-        {
-            minXFloat = minXRandomFloat;
-            maxXFloat = 0;
-            minYFloat = 0;
-            maxYFloat = maxYRandomFloat;
-        }
-        else if (trueHumanOuterQuads[randomQuad] == humanInOuterQuad3)
-        {
-            minXFloat = minXRandomFloat;
-            maxXFloat = 0;
-            minYFloat = minYRandomFloat;
-            maxYFloat = 0;
-        }
-        else if (trueHumanOuterQuads[randomQuad] == humanInOuterQuad4)
-        {
-            minXFloat = 0;
-            maxXFloat = maxXRandomFloat;
-            minYFloat = minYRandomFloat;
-            maxYFloat = 0;
-        }
-        else
-        {
-            minXFloat = minXRandomFloat;
-            maxXFloat = maxXRandomFloat;
-            minYFloat = minYRandomFloat;
-            maxYFloat = maxYRandomFloat;
-        }
-
-        ClearLists();
-    }
-
-    private void ratCircleMovement()
-    {
-        int randomQuad;
-        if (trueRatQuads.Count > 1)
-        {
-            randomQuad = rnd.Next(0, trueRatQuads.Count - 1);
-        }
-        else
-        {
-            randomQuad = 0;
-        }
-
-        if (trueRatQuads[randomQuad] == ratInQuad1)
-        {
-            minXFloat = 0;
-            maxXFloat = maxXRandomFloat;
-            minYFloat = 0;
-            maxYFloat = maxYRandomFloat;
-        }
-        else if (trueRatQuads[randomQuad] == ratInQuad2)
-        {
-            minXFloat = minXRandomFloat;
-            maxXFloat = 0;
-            minYFloat = 0;
-            maxYFloat = maxYRandomFloat;
-        }
-        else if (trueRatQuads[randomQuad] == ratInQuad3)
-        {
-            minXFloat = minXRandomFloat;
-            maxXFloat = 0;
-            minYFloat = minYRandomFloat;
-            maxYFloat = 0;
-        }
-        else if (trueRatQuads[randomQuad] == ratInQuad4)
-        {
-            minXFloat = 0;
-            maxXFloat = maxXRandomFloat;
-            minYFloat = minYRandomFloat;
-            maxYFloat = 0;
-        }
-        else
-        {
-            minXFloat = minXRandomFloat;
-            maxXFloat = maxXRandomFloat;
-            minYFloat = minYRandomFloat;
-            maxYFloat = maxYRandomFloat;
-        }
-
-        ClearLists();
-    }
-
-    private Vector2 RandomVector(float xMin, float xMax, float yMin, float yMax)
+    private Vector2 RandomVector(float xMin, float xMax, float yMin, float yMax) //vector for movement
     {
         var x = Random.Range(xMin, xMax);
         var y = Random.Range(yMin, yMax);
-        return new Vector2(x*speed, y*speed);
+        return new Vector2(x * speed, y * speed);
     }
 
-    private void colliderCheck()
+    private void ColliderCheck() //Used to check whether or not there are rats/uninfected/infected in range
     {
-        humanInOuterQuad1 = outerQuad1DetectTrigger.OverlapCollider(humanContactFilter, outerQuad1HumanHitDetectionResults) > 0;
-        humanInOuterQuad2 = outerQuad2DetectTrigger.OverlapCollider(humanContactFilter, outerQuad2HumanHitDetectionResults) > 0;
-        humanInOuterQuad3 = outerQuad3DetectTrigger.OverlapCollider(humanContactFilter, outerQuad3HumanHitDetectionResults) > 0;
-        humanInOuterQuad4 = outerQuad4DetectTrigger.OverlapCollider(humanContactFilter, outerQuad4HumanHitDetectionResults) > 0;
+       
 
-        humanInInnerQuad1 = innerQuad1DetectTrigger.OverlapCollider(humanContactFilter, innerQuad1HitDetectionResults) > 0;
-        humanInInnerQuad2 = innerQuad2DetectTrigger.OverlapCollider(humanContactFilter, innerQuad2HitDetectionResults) > 0;
-        humanInInnerQuad3 = innerQuad3DetectTrigger.OverlapCollider(humanContactFilter, innerQuad3HitDetectionResults) > 0;
-        humanInInnerQuad4 = innerQuad4DetectTrigger.OverlapCollider(humanContactFilter, innerQuad4HitDetectionResults) > 0;
+        //   Bool     Collider2D   Overlapping   ContactFilter     Array        Amount
+        upCloseDetected = upClose.OverlapCollider(ratContactFilter, upCloseDetection) > 1;
+        downCloseDetected = downClose.OverlapCollider(ratContactFilter, downCloseDetection) > 1;
+        leftCloseDetected = leftClose.OverlapCollider(ratContactFilter, leftCloseDetection) > 1;
+        rightCloseDetected = rightClose.OverlapCollider(ratContactFilter, rightCloseDetection) > 1;
 
-        ratInQuad1 = outerQuad1DetectTrigger.OverlapCollider(ratContactFilter, quad1RatHitDetectionResults) > 1;
-        ratInQuad2 = outerQuad2DetectTrigger.OverlapCollider(ratContactFilter, quad2RatHitDetectionResults) > 1;
-        ratInQuad3 = outerQuad3DetectTrigger.OverlapCollider(ratContactFilter, quad3RatHitDetectionResults) > 1;
-        ratInQuad4 = outerQuad4DetectTrigger.OverlapCollider(ratContactFilter, quad4RatHitDetectionResults) > 1;
+        upHumanDetected = upHuman.OverlapCollider(uninfectedContactFilter, upHumanDetection) > 0;
+        downHumanDetected = downHuman.OverlapCollider(uninfectedContactFilter, downHumanDetection) > 0;
+        leftHumanDetected = leftHuman.OverlapCollider(uninfectedContactFilter, leftHumanDetection) > 0;
+        rightHumanDetected = rightHuman.OverlapCollider(uninfectedContactFilter, rightHumanDetection) > 0;
 
-        humansInOuterCircle = (humanInOuterQuad1 || humanInOuterQuad2 || humanInOuterQuad3 || humanInOuterQuad4);
-        humansInInnerCircle = (humanInInnerQuad1 || humanInInnerQuad2 || humanInInnerQuad3 || humanInInnerQuad4);
-        ratsInCircle = (ratInQuad1 || ratInQuad2 || ratInQuad3 || ratInQuad4);
+        //Uses the same trigger as uninfected
+        upInfectedDetected = upHuman.OverlapCollider(infectedContactFilter, upInfectedDetection) > 0;
+        downInfectedDetected = downHuman.OverlapCollider(infectedContactFilter, downInfectedDetection) > 0;
+        leftInfectedDetected = leftHuman.OverlapCollider(infectedContactFilter, leftInfectedDetection) > 0;
+        rightInfectedDetected = rightHuman.OverlapCollider(infectedContactFilter, rightInfectedDetection) > 0;
     }
+
 }
+
