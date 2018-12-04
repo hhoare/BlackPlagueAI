@@ -29,10 +29,15 @@ public class Human : MonoBehaviour
     [SerializeField]
     float yMax = 1;
 
-    private int directionCounter = 5; //Used to make human more likely to travel in same direction for however many turns
-    private float ratVariable = 0.75f; //Used to make human less likely to move towards rats in detection radius
-    private float humanVariable = 0.5f; //Used to make human more likely to move towards other humans in detection radius
-    private float infectedVariable = 0.8f; //Used to make human less likely to move towards infected in detection radius
+    //private int directionCounter = 5; //Used to make human more likely to travel in same direction for however many turns
+
+    [SerializeField][Tooltip("Higher number = more likely to move towards rats in detection radius")]
+    private float ratVariable;
+    [SerializeField][Tooltip(("Higher number = more likely to move towards other humans in detection radius"))]
+    private float humanVariable;
+    [SerializeField][Tooltip("Higher number = more likely to move towards infected in detection radius")]
+    private float infectedVariable;
+
     [SerializeField]
     ContactFilter2D uninfectedContactFilter;
     [SerializeField]
@@ -120,54 +125,54 @@ public class Human : MonoBehaviour
         
         if (upHumanDetected==true)
         {
-            tempYMax = 2f;
+            tempYMax = humanVariable;
         }
         if (downHumanDetected == true)
         {
-            tempYMin = -2f;
+            tempYMin = -humanVariable;
         }
         if (leftHumanDetected == true)
         {
-            tempXMin = -2;
+            tempXMin = -humanVariable;
         }
         if (rightHumanDetected == true)
         {
-            tempXMax = 2f;
+            tempXMax = humanVariable;
         }
 
         if (upRatDetected == true)
         {
-            tempYMax = 0.4f;
+            tempYMax = ratVariable;
         }
         if (downRatDetected == true)
         {
-            tempYMin = -0.4f;
+            tempYMin = -ratVariable;
         }
         if (leftRatDetected == true)
         {
-            tempXMin = -0.4f;
+            tempXMin = -ratVariable;
         }
         if (rightRatDetected == true)
         {
-            tempXMax = 0.4f;
+            tempXMax = ratVariable;
         }
 
 
         if (upInfectedDetected == true)
         {
-            tempYMax = 0.2f;
+            tempYMax = infectedVariable;
         }
         if (downInfectedDetected == true)
         {
-            tempYMin = -0.2f;
+            tempYMin = -infectedVariable;
         }
         if (leftInfectedDetected == true)
         {
-            tempXMin = -0.2f;
+            tempXMin = -infectedVariable;
         }
         if (rightInfectedDetected == true)
         {
-            tempXMax = 0.2f;
+            tempXMax = infectedVariable;
         }
 
         rb.velocity=RandomVector(tempXMin, tempXMax, tempYMin, tempYMax); //Change velocity based on a random vector with the mins and maxes
