@@ -45,6 +45,11 @@ public class Rat : MonoBehaviour
     private bool leftCloseDetected;
     private bool rightCloseDetected;
 
+    private bool upRatDetected;
+    private bool downRatDetected;
+    private bool leftRatDetected;
+    private bool rightRatDetected;
+
     private bool upHumanDetected;
     private bool downHumanDetected;
     private bool leftHumanDetected;
@@ -118,25 +123,22 @@ public class Rat : MonoBehaviour
         //If statements used to decrease chance of moving towards rat/infected, and increase chance of moving towards uninfected
         //===========================================================================================================
 
-       
-        if (upCloseDetected == true)
+        if (upRatDetected == true)
         {
-            tempYMax = 0.4f;
+            tempYMax = 2f;
         }
-        if (downCloseDetected == true)
+        if (downRatDetected == true)
         {
-            tempYMin = -0.4f;
+            tempYMin = -2f;
         }
-        if (leftCloseDetected == true)
+        if (leftRatDetected == true)
         {
-            tempXMin = -0.4f;
+            tempXMin = -2;
         }
-        if (rightCloseDetected == true)
+        if (rightRatDetected == true)
         {
-            tempXMax = 0.4f;
+            tempXMax = 2f;
         }
-        
-
 
         if (upHumanDetected == true||upInfectedDetected==true)
         {
@@ -156,6 +158,24 @@ public class Rat : MonoBehaviour
         }
 
 
+        if (upCloseDetected == true)
+        {
+            tempYMax = 0.4f;
+        }
+        if (downCloseDetected == true)
+        {
+            tempYMin = -0.4f;
+        }
+        if (leftCloseDetected == true)
+        {
+            tempXMin = -0.4f;
+        }
+        if (rightCloseDetected == true)
+        {
+            tempXMax = 0.4f;
+        }
+
+
         rb.velocity = RandomVector(tempXMin, tempXMax, tempYMin, tempYMax); //Change velocity based on a random vector with the mins and maxes
 
     }
@@ -170,23 +190,32 @@ public class Rat : MonoBehaviour
     private void ColliderCheck() //Used to check whether or not there are rats/uninfected/infected in range
     {
        
-
+        //If human is too close
         //   Bool     Collider2D   Overlapping   ContactFilter     Array        Amount
-        upCloseDetected = upClose.OverlapCollider(ratContactFilter, upCloseDetection) > 1;
-        downCloseDetected = downClose.OverlapCollider(ratContactFilter, downCloseDetection) > 1;
-        leftCloseDetected = leftClose.OverlapCollider(ratContactFilter, leftCloseDetection) > 1;
-        rightCloseDetected = rightClose.OverlapCollider(ratContactFilter, rightCloseDetection) > 1;
+        upCloseDetected = upClose.OverlapCollider(uninfectedContactFilter, upCloseDetection) > 0;
+        downCloseDetected = downClose.OverlapCollider(uninfectedContactFilter, downCloseDetection) > 0;
+        leftCloseDetected = leftClose.OverlapCollider(uninfectedContactFilter, leftCloseDetection) > 0;
+        rightCloseDetected = rightClose.OverlapCollider(uninfectedContactFilter, rightCloseDetection) > 0;
 
+        //If infected is too close
+        //Uses the same trigger as uninfected
+        upInfectedDetected = upClose.OverlapCollider(infectedContactFilter, upInfectedDetection) > 0;
+        downInfectedDetected = downClose.OverlapCollider(infectedContactFilter, downInfectedDetection) > 0;
+        leftInfectedDetected = leftClose.OverlapCollider(infectedContactFilter, leftInfectedDetection) > 0;
+        rightInfectedDetected = rightClose.OverlapCollider(infectedContactFilter, rightInfectedDetection) > 0;
+
+        //If uninfected is within outer range
         upHumanDetected = upHuman.OverlapCollider(uninfectedContactFilter, upHumanDetection) > 0;
         downHumanDetected = downHuman.OverlapCollider(uninfectedContactFilter, downHumanDetection) > 0;
         leftHumanDetected = leftHuman.OverlapCollider(uninfectedContactFilter, leftHumanDetection) > 0;
         rightHumanDetected = rightHuman.OverlapCollider(uninfectedContactFilter, rightHumanDetection) > 0;
 
-        //Uses the same trigger as uninfected
-        upInfectedDetected = upHuman.OverlapCollider(infectedContactFilter, upInfectedDetection) > 0;
-        downInfectedDetected = downHuman.OverlapCollider(infectedContactFilter, downInfectedDetection) > 0;
-        leftInfectedDetected = leftHuman.OverlapCollider(infectedContactFilter, leftInfectedDetection) > 0;
-        rightInfectedDetected = rightHuman.OverlapCollider(infectedContactFilter, rightInfectedDetection) > 0;
+        //If uninfected is within outer range
+        upRatDetected = upHuman.OverlapCollider(ratContactFilter, upHumanDetection) > 1;
+        downRatDetected = downHuman.OverlapCollider(ratContactFilter, downHumanDetection) > 1;
+        leftRatDetected = leftHuman.OverlapCollider(ratContactFilter, leftHumanDetection) > 1;
+        rightRatDetected = rightHuman.OverlapCollider(ratContactFilter, rightHumanDetection) > 1;
+
     }
 
 }

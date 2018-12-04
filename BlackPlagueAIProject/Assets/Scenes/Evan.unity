@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!60 &27394884 stripped
+PolygonCollider2D:
+  m_PrefabParentObject: {fileID: 60156606262685950, guid: 1376e2f4eefb6be4a97214b12a7f5c92,
+    type: 2}
+  m_PrefabInternal: {fileID: 764200131}
 --- !u!1 &30926232
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,80 +218,88 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &236279022
+--- !u!60 &383108129 stripped
+PolygonCollider2D:
+  m_PrefabParentObject: {fileID: 60838927065248790, guid: 1376e2f4eefb6be4a97214b12a7f5c92,
+    type: 2}
+  m_PrefabInternal: {fileID: 764200131}
+--- !u!1 &441435793 stripped
 GameObject:
+  m_PrefabParentObject: {fileID: 1849959441290834, guid: 1376e2f4eefb6be4a97214b12a7f5c92,
+    type: 2}
+  m_PrefabInternal: {fileID: 764200131}
+--- !u!114 &441435794
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 236279024}
-  - component: {fileID: 236279023}
-  m_Layer: 8
-  m_Name: Background
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &236279023
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 236279022}
+  m_GameObject: {fileID: 441435793}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 10804389
-  m_SortingLayer: -1
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 70b980e4cb706eb49953d6bbc7d789db, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
---- !u!4 &236279024
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 236279022}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.001, y: 0.047, z: 0}
-  m_LocalScale: {x: 24.724133, y: 12.175831, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e9c4cedc63a1c458d70ed503672f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ratDetectRadius: 0
+  humanDetectRadius: 0
+  infectedRadius: 0
+  speed: 5
+  lifeSpan: 100
+  spawnRate: 2
+  directionUpdateTime: 0.5
+  xMin: -1
+  xMax: 1
+  yMin: -1
+  yMax: 1
+  uninfectedContactFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 2048
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  infectedContactFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 4096
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  ratContactFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 1024
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  upClose: {fileID: 1519630394}
+  downClose: {fileID: 1444404278}
+  leftClose: {fileID: 1195272075}
+  rightClose: {fileID: 2138200193}
+  upHuman: {fileID: 1698506409}
+  downHuman: {fileID: 27394884}
+  leftHuman: {fileID: 383108129}
+  rightHuman: {fileID: 1500014505}
 --- !u!1 &462891825
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +582,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4209703483613584, guid: 1376e2f4eefb6be4a97214b12a7f5c92, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.21
+      value: -4.61
       objectReference: {fileID: 0}
     - target: {fileID: 4209703483613584, guid: 1376e2f4eefb6be4a97214b12a7f5c92, type: 2}
       propertyPath: m_LocalPosition.y
@@ -599,9 +612,35 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114545131582304994, guid: 1376e2f4eefb6be4a97214b12a7f5c92, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1376e2f4eefb6be4a97214b12a7f5c92, type: 2}
   m_IsPrefabParent: 0
+--- !u!60 &1195272075 stripped
+PolygonCollider2D:
+  m_PrefabParentObject: {fileID: 60319596070392818, guid: 1376e2f4eefb6be4a97214b12a7f5c92,
+    type: 2}
+  m_PrefabInternal: {fileID: 764200131}
+--- !u!60 &1444404278 stripped
+PolygonCollider2D:
+  m_PrefabParentObject: {fileID: 60201284687625160, guid: 1376e2f4eefb6be4a97214b12a7f5c92,
+    type: 2}
+  m_PrefabInternal: {fileID: 764200131}
+--- !u!60 &1500014505 stripped
+PolygonCollider2D:
+  m_PrefabParentObject: {fileID: 60533193165742212, guid: 1376e2f4eefb6be4a97214b12a7f5c92,
+    type: 2}
+  m_PrefabInternal: {fileID: 764200131}
+--- !u!60 &1519630394 stripped
+PolygonCollider2D:
+  m_PrefabParentObject: {fileID: 60457009162290256, guid: 1376e2f4eefb6be4a97214b12a7f5c92,
+    type: 2}
+  m_PrefabInternal: {fileID: 764200131}
+--- !u!60 &1698506409 stripped
+PolygonCollider2D:
+  m_PrefabParentObject: {fileID: 60940961396946958, guid: 1376e2f4eefb6be4a97214b12a7f5c92,
+    type: 2}
+  m_PrefabInternal: {fileID: 764200131}
 --- !u!1 &1925545965
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,7 +760,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2048075934
 GameObject:
@@ -823,6 +862,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &2138200193 stripped
+PolygonCollider2D:
+  m_PrefabParentObject: {fileID: 60803456606946924, guid: 1376e2f4eefb6be4a97214b12a7f5c92,
+    type: 2}
+  m_PrefabInternal: {fileID: 764200131}
 --- !u!1 &2143498717
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,9 +877,7 @@ GameObject:
   - component: {fileID: 2143498719}
   - component: {fileID: 2143498718}
   - component: {fileID: 2143498721}
-  - component: {fileID: 2143498720}
-  - component: {fileID: 2143498722}
-  m_Layer: 14
+  m_Layer: 11
   m_Name: Human
   m_TagString: Uninfected
   m_Icon: {fileID: 0}
@@ -898,28 +940,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &2143498720
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2143498717}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &2143498721
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -945,75 +967,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2143498722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2143498717}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2eff489d49b6c84a94ad66c8e74eabf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ratDetectRadius: 0
-  humanDetectRadius: 0
-  infectedRadius: 0
-  speed: 0
-  lifeSpan: 0
-  spawnRate: 0
-  directionUpdateTime: 0
-  xMin: -1
-  xMax: 1
-  yMin: -1
-  yMax: 1
-  uninfectedContactFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  infectedContactFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  ratContactFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  upRat: {fileID: 0}
-  downRat: {fileID: 0}
-  leftRat: {fileID: 0}
-  rightRat: {fileID: 0}
-  upHuman: {fileID: 0}
-  downHuman: {fileID: 0}
-  leftHuman: {fileID: 0}
-  rightHuman: {fileID: 0}
