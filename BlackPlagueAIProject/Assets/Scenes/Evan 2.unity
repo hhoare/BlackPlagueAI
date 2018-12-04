@@ -511,6 +511,11 @@ Prefab:
       propertyPath: m_Name
       value: Human (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114355086536321146, guid: f56da2f7b31b6ba49adab97015b54050,
+        type: 2}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f56da2f7b31b6ba49adab97015b54050, type: 2}
   m_IsPrefabParent: 0
@@ -2120,12 +2125,23 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1586894677}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 10
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1642128590}
+        m_MethodName: ChangeHumansSpeed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1586894676
@@ -2230,6 +2246,12 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1642128590 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114355086536321146, guid: f56da2f7b31b6ba49adab97015b54050,
+    type: 2}
+  m_PrefabInternal: {fileID: 382267729}
+  m_Script: {fileID: 11500000, guid: d2eff489d49b6c84a94ad66c8e74eabf, type: 3}
 --- !u!1 &1830484121
 GameObject:
   m_ObjectHideFlags: 0

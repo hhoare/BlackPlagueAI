@@ -10,8 +10,7 @@ public class Human : MonoBehaviour
     private float humanDetectRadius;
     [SerializeField]
     private float infectedRadius;
-    [SerializeField]
-    private float speed;
+    
     [SerializeField]
     private float lifeSpan;
     [SerializeField]
@@ -28,6 +27,8 @@ public class Human : MonoBehaviour
     private float yMin = -1;
     [SerializeField]
     private float yMax = 1;
+
+    private static float speed = 5;
 
     //private int directionCounter = 5; //Used to make human more likely to travel in same direction for however many turns
 
