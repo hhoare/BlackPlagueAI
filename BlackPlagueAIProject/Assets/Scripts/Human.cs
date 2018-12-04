@@ -11,7 +11,7 @@ public class Human : MonoBehaviour
     [SerializeField]
     private float infectedRadius;
     [SerializeField]
-    private static float speed;
+    private float speed;
     [SerializeField]
     private float lifeSpan;
     [SerializeField]
@@ -32,11 +32,11 @@ public class Human : MonoBehaviour
     //private int directionCounter = 5; //Used to make human more likely to travel in same direction for however many turns
 
     [SerializeField][Tooltip("Higher number = more likely to move towards rats in detection radius")]
-    private static float ratVariable;
+    private float ratVariable;
     [SerializeField][Tooltip(("Higher number = more likely to move towards other humans in detection radius"))]
-    private static float humanVariable;
+    private float humanVariable;
     [SerializeField][Tooltip("Higher number = more likely to move towards infected in detection radius")]
-    private static float infectedVariable;
+    private float infectedVariable;
 
     [SerializeField]
     ContactFilter2D uninfectedContactFilter;
@@ -220,19 +220,19 @@ public class Human : MonoBehaviour
         rightInfectedDetected = rightHuman.OverlapCollider(infectedContactFilter, rightInfectedDetection) > infected;
     }
 
-    private void ChangeHumanVariable(float newHumanVariable)
+    public void ChangeHumanVariable(float newHumanVariable)
     {
         humanVariable = newHumanVariable;
     }
-    private void ChangeRatVariable(float newRatVariable)
+    public void ChangeRatVariable(float newRatVariable)
     {
         ratVariable = newRatVariable;
     }
-    private void ChangeInfectedVariable(float newInfectedVariable)
+    public void ChangeInfectedVariable(float newInfectedVariable)
     {
         infectedVariable = newInfectedVariable;
     }
-    private void ChangeHumansSpeed(float newSpeed)
+    public void ChangeHumansSpeed(float newSpeed)
     {
         speed = newSpeed;
     }
