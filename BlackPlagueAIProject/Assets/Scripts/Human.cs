@@ -5,38 +5,38 @@ using UnityEngine;
 public class Human : MonoBehaviour
 {
     [SerializeField]
-    float ratDetectRadius;
+    private float ratDetectRadius;
     [SerializeField]
-    float humanDetectRadius;
+    private float humanDetectRadius;
     [SerializeField]
-    float infectedRadius;
+    private float infectedRadius;
     [SerializeField]
-    float speed;
+    private static float speed;
     [SerializeField]
-    float lifeSpan;
+    private float lifeSpan;
     [SerializeField]
-    float spawnRate;
+    private float spawnRate;
     [SerializeField]
-    float directionUpdateTime; //How long before the direction is updated
+    private float directionUpdateTime; //How long before the direction is updated
     private float countDownTime; //Used to copy directionUpdateTime for decrementing
     private Rigidbody2D rb;
     [SerializeField]
-    float xMin = -1;
+    private float xMin = -1;
     [SerializeField]
-    float xMax = 1;
+    private float xMax = 1;
     [SerializeField]
-    float yMin = -1;
+    private float yMin = -1;
     [SerializeField]
-    float yMax = 1;
+    private float yMax = 1;
 
     //private int directionCounter = 5; //Used to make human more likely to travel in same direction for however many turns
 
     [SerializeField][Tooltip("Higher number = more likely to move towards rats in detection radius")]
-    private float ratVariable;
+    private static float ratVariable;
     [SerializeField][Tooltip(("Higher number = more likely to move towards other humans in detection radius"))]
-    private float humanVariable;
+    private static float humanVariable;
     [SerializeField][Tooltip("Higher number = more likely to move towards infected in detection radius")]
-    private float infectedVariable;
+    private static float infectedVariable;
 
     [SerializeField]
     ContactFilter2D uninfectedContactFilter;
@@ -220,4 +220,20 @@ public class Human : MonoBehaviour
         rightInfectedDetected = rightHuman.OverlapCollider(infectedContactFilter, rightInfectedDetection) > infected;
     }
 
+    private void ChangeHumanVariable(float newHumanVariable)
+    {
+        humanVariable = newHumanVariable;
+    }
+    private void ChangeRatVariable(float newRatVariable)
+    {
+        ratVariable = newRatVariable;
+    }
+    private void ChangeInfectedVariable(float newInfectedVariable)
+    {
+        infectedVariable = newInfectedVariable;
+    }
+    private void ChangeHumansSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
 }
