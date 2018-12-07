@@ -30,9 +30,14 @@ public class Rat : MonoBehaviour
     private static float speed = 5;
 
     private int directionCounter = 5; //Used to make human more likely to travel in same direction for however many turns
-    private float ratVariable = 0.75f; //Used to make human less likely to move towards rats in detection radius
-    private float humanVariable = 0.5f; //Used to make human more likely to move towards other humans in detection radius
-    private float infectedVariable = 0.8f; //Used to make human less likely to move towards infected in detection radius
+
+    [SerializeField][Tooltip("Higher number = more likely to move towards rats in detection radius")]
+    private float ratVariable; //Used to make human less likely to move towards rats in detection radius
+    [SerializeField][Tooltip("Higher number = more likely to move towards humans in outer detection radius")]
+    private float humanOuterVariable; //Used to make human more likely to move towards other humans in detection radius
+    [SerializeField][Tooltip("Lower number = more likely to move away from humans in inner detection radius")]
+    private float humanInnerVariable; //Used to make human less likely to move towards infected in detection radius
+
     [SerializeField]
     ContactFilter2D uninfectedContactFilter;
     [SerializeField]
@@ -125,54 +130,54 @@ public class Rat : MonoBehaviour
 
         if (upRatDetected == true)
         {
-            tempYMax = 2f;
+            tempYMax = ratVariable;
         }
         if (downRatDetected == true)
         {
-            tempYMin = -2f;
+            tempYMin = -ratVariable;
         }
         if (leftRatDetected == true)
         {
-            tempXMin = -2;
+            tempXMin = -ratVariable;
         }
         if (rightRatDetected == true)
         {
-            tempXMax = 2f;
+            tempXMax = ratVariable;
         }
 
         if (upHumanDetected == true||upInfectedDetected==true)
         {
-            tempYMax = 2f;
+            tempYMax = humanOuterVariable;
         }
         if (downHumanDetected == true || upInfectedDetected == true)
         {
-            tempYMin = -2f;
+            tempYMin = -humanOuterVariable;
         }
         if (leftHumanDetected == true || upInfectedDetected == true)
         {
-            tempXMin = -2;
+            tempXMin = -humanOuterVariable;
         }
         if (rightHumanDetected == true || upInfectedDetected == true)
         {
-            tempXMax = 2f;
+            tempXMax = humanOuterVariable;
         }
 
 
         if (upCloseDetected == true)
         {
-            tempYMax = 0.4f;
+            tempYMax = humanInnerVariable;
         }
         if (downCloseDetected == true)
         {
-            tempYMin = -0.4f;
+            tempYMin = -humanInnerVariable;
         }
         if (leftCloseDetected == true)
         {
-            tempXMin = -0.4f;
+            tempXMin = -humanInnerVariable;
         }
         if (rightCloseDetected == true)
         {
-            tempXMax = 0.4f;
+            tempXMax = humanInnerVariable;
         }
 
 
