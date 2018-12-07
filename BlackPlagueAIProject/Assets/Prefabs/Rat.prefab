@@ -4154,7 +4154,6 @@ MonoBehaviour:
   ratDetectRadius: 0
   humanDetectRadius: 0
   infectedRadius: 0
-  speed: 5
   lifeSpan: 100
   spawnRate: 2
   directionUpdateTime: 0.5
@@ -4162,6 +4161,9 @@ MonoBehaviour:
   xMax: 1
   yMin: -1
   yMax: 1
+  ratVariable: 2
+  humanOuterVariable: 2
+  humanInnerVariable: 0
   uninfectedContactFilter:
     useTriggers: 0
     useLayerMask: 1
@@ -4473,7 +4475,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 003beadc4b341f74dab6fb17c9f5057b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6320754, g: 0.5504331, b: 0.46213064, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
