@@ -11,8 +11,6 @@ public class Rat : MonoBehaviour
     [SerializeField]
     float infectedRadius;
     [SerializeField]
-    float speed;
-    [SerializeField]
     float lifeSpan;
     [SerializeField]
     float spawnRate;
@@ -28,6 +26,8 @@ public class Rat : MonoBehaviour
     float yMin = -1;
     [SerializeField]
     float yMax = 1;
+
+    private static float speed = 5;
 
     private int directionCounter = 5; //Used to make human more likely to travel in same direction for however many turns
     private float ratVariable = 0.75f; //Used to make human less likely to move towards rats in detection radius
@@ -216,6 +216,11 @@ public class Rat : MonoBehaviour
         leftRatDetected = leftHuman.OverlapCollider(ratContactFilter, leftHumanDetection) > 1;
         rightRatDetected = rightHuman.OverlapCollider(ratContactFilter, rightHumanDetection) > 1;
 
+    }
+
+    public void ChangeRatsSpeed(float newSpeed)
+    {
+        speed = newSpeed;
     }
 
 }
