@@ -5,27 +5,27 @@ using UnityEngine;
 public class Rat : MonoBehaviour
 {
     [SerializeField]
-    float ratDetectRadius;
+    private float ratDetectRadius;
     [SerializeField]
-    float humanDetectRadius;
+    private float humanDetectRadius;
     [SerializeField]
-    float infectedRadius;
+    private float infectedRadius;
     [SerializeField]
-    float lifeSpan;
+    private float lifeSpan;
     [SerializeField]
-    float spawnRate;
+    private float spawnRate;
     [SerializeField]
-    float directionUpdateTime; //How long before the direction is updated
+    private float directionUpdateTime; //How long before the direction is updated
     private float countDownTime; //Used to copy directionUpdateTime for decrementing
     private Rigidbody2D rb;
     [SerializeField]
-    float xMin = -1;
+    private float xMin = -1;
     [SerializeField]
-    float xMax = 1;
+    private float xMax = 1;
     [SerializeField]
-    float yMin = -1;
+    private float yMin = -1;
     [SerializeField]
-    float yMax = 1;
+    private float yMax = 1;
 
     private static float speed = 5;
 
@@ -39,11 +39,11 @@ public class Rat : MonoBehaviour
     private float humanInnerVariable; //Used to make human less likely to move towards infected in detection radius
 
     [SerializeField]
-    ContactFilter2D uninfectedContactFilter;
+    private ContactFilter2D uninfectedContactFilter;
     [SerializeField]
-    ContactFilter2D infectedContactFilter;
+    private ContactFilter2D infectedContactFilter;
     [SerializeField]
-    ContactFilter2D ratContactFilter;
+    private ContactFilter2D ratContactFilter;
 
     private bool upCloseDetected;
     private bool downCloseDetected;
@@ -82,21 +82,21 @@ public class Rat : MonoBehaviour
 
     //DetectionTriggers
     [SerializeField]
-    Collider2D upClose;
+    private Collider2D upClose;
     [SerializeField]
-    Collider2D downClose;
+    private Collider2D downClose;
     [SerializeField]
-    Collider2D leftClose;
+    private Collider2D leftClose;
     [SerializeField]
-    Collider2D rightClose;
+    private Collider2D rightClose;
     [SerializeField]
-    Collider2D upHuman;
+    private Collider2D upHuman;
     [SerializeField]
-    Collider2D downHuman;
+    private Collider2D downHuman;
     [SerializeField]
-    Collider2D leftHuman;
+    private Collider2D leftHuman;
     [SerializeField]
-    Collider2D rightHuman;
+    private Collider2D rightHuman;
 
 
     private void Start()
