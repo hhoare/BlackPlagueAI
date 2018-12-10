@@ -979,7 +979,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: By Ian Jennin, Evan Karlson, and Henry Hoare
+  m_Text: By Ian Jeannin, Evan Karlson, and Henry Hoare
 --- !u!222 &2084251994
 CanvasRenderer:
   m_ObjectHideFlags: 0
