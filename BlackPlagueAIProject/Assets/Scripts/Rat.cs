@@ -29,7 +29,7 @@ public class Rat : MonoBehaviour
 
     private static float speed = 5;
 
-    private int directionCounter = 5; //Used to make human more likely to travel in same direction for however many turns
+    //private int directionCounter = 5; //Used to make human more likely to travel in same direction for however many turns
 
     [SerializeField][Tooltip("Higher number = more likely to move towards rats in detection radius")]
     private float ratVariable; //Used to make human less likely to move towards rats in detection radius
@@ -149,15 +149,15 @@ public class Rat : MonoBehaviour
         {
             tempYMax = humanOuterVariable;
         }
-        if (downHumanDetected == true || upInfectedDetected == true)
+        if (downHumanDetected == true || downInfectedDetected == true)
         {
             tempYMin = -humanOuterVariable;
         }
-        if (leftHumanDetected == true || upInfectedDetected == true)
+        if (leftHumanDetected == true || leftInfectedDetected == true)
         {
             tempXMin = -humanOuterVariable;
         }
-        if (rightHumanDetected == true || upInfectedDetected == true)
+        if (rightHumanDetected == true || rightInfectedDetected == true)
         {
             tempXMax = humanOuterVariable;
         }
