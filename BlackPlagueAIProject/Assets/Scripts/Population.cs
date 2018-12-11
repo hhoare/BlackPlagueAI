@@ -19,6 +19,7 @@ public class Population : MonoBehaviour {
 
     [SerializeField]
     private Collider2D objectFinder;
+
     [SerializeField]
     private ContactFilter2D ratFilter;
     [SerializeField]
@@ -51,9 +52,11 @@ public class Population : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if(Time.time>=timeToRepopulate)
+        CheckNumberOfEntities();
+
+        if (Time.time>=timeToRepopulate)
         {
-            checkNumberOfEntities();
+            
             if(numRats>=2)
             {
                ratsToAdd = Mathf.RoundToInt(numRats * (1/ratRepopulationPercentage));
@@ -87,7 +90,7 @@ public class Population : MonoBehaviour {
     }
 
 
-    private void checkNumberOfEntities()
+    private void CheckNumberOfEntities()
     {
         numRats = objectFinder.OverlapCollider(ratFilter, ratDetection);
         numUninfected = objectFinder.OverlapCollider(uninfectedFilter, uninfectedDetection);
