@@ -457,6 +457,11 @@ Prefab:
       propertyPath: m_Color.b
       value: 0.16509432
       objectReference: {fileID: 0}
+    - target: {fileID: 114355086536321146, guid: f56da2f7b31b6ba49adab97015b54050,
+        type: 2}
+      propertyPath: lifeSpan
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f56da2f7b31b6ba49adab97015b54050, type: 2}
   m_IsPrefabParent: 0
@@ -1023,50 +1028,6 @@ Prefab:
     - target: {fileID: 1399214416486362, guid: 59bfcb6bfa6d9fc4d853b1d8aba8c84e, type: 2}
       propertyPath: m_Name
       value: Rat (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1756123758874800, guid: 59bfcb6bfa6d9fc4d853b1d8aba8c84e, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1815514701005072, guid: 59bfcb6bfa6d9fc4d853b1d8aba8c84e, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286483708292878, guid: 59bfcb6bfa6d9fc4d853b1d8aba8c84e, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1875766003363964, guid: 59bfcb6bfa6d9fc4d853b1d8aba8c84e, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1479826367457250, guid: 59bfcb6bfa6d9fc4d853b1d8aba8c84e, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1915524354283420, guid: 59bfcb6bfa6d9fc4d853b1d8aba8c84e, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1828779917345012, guid: 59bfcb6bfa6d9fc4d853b1d8aba8c84e, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1272139222675342, guid: 59bfcb6bfa6d9fc4d853b1d8aba8c84e, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1258267535733050, guid: 59bfcb6bfa6d9fc4d853b1d8aba8c84e, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1992642761409340, guid: 59bfcb6bfa6d9fc4d853b1d8aba8c84e, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1399214416486362, guid: 59bfcb6bfa6d9fc4d853b1d8aba8c84e, type: 2}
-      propertyPath: m_TagString
-      value: Rat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59bfcb6bfa6d9fc4d853b1d8aba8c84e, type: 2}
@@ -2751,7 +2712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2836c5354c4504bb46e5d3e2cfadc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToRepopulate: 20
+  timeToRepopulate: 10
   ratRepopulationPercentage: 0.5
   uninfectedRepopulationPercentage: 0.5
   fleasRepopulationPercentage: 0.5

@@ -98,15 +98,24 @@ public class Rat : MonoBehaviour
     [SerializeField]
     private Collider2D rightHuman;
 
-
-    private void Start()
+    private float timeSinceInstantiation;
+    private static Population population=new Population();
+    
+    private void Awake()
     {
+        timeSinceInstantiation = Time.time;
         rb = GetComponent<Rigidbody2D>();
         countDownTime = directionUpdateTime;
     }
 
     private void FixedUpdate()
     {
+        if (Time.time >= lifeSpan+timeSinceInstantiation)
+        {
+            population.DecrementRats();
+            Destroy(gameObject);
+        }
+
         countDownTime -= Time.deltaTime;
         if (countDownTime <= 0)
         {

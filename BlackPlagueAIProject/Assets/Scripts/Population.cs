@@ -46,6 +46,7 @@ public class Population : MonoBehaviour {
     private int fleasToAdd;
 
     private float timeToAdd;
+    private Human human;
 
     private void Start()
     {
@@ -62,7 +63,7 @@ public class Population : MonoBehaviour {
             if(numRats>=2)
             {
                ratsToAdd = Mathf.RoundToInt(numRats * ratRepopulationPercentage);
-                for (int x = 0; x <= ratsToAdd; x++)
+                for (int x = 1; x <= ratsToAdd; x++)
                 {
                     Instantiate(rat);
                     IncrementRats();
@@ -71,17 +72,18 @@ public class Population : MonoBehaviour {
             if(numUninfected>=2)
             {
                uninfectedToAdd = Mathf.RoundToInt(numUninfected * uninfectedRepopulationPercentage);
-                for (int y = 0; y <= uninfectedToAdd; y++)
+                for (int y = 1; y <= uninfectedToAdd; y++)
                 {
                     Instantiate(uninfected);
                     IncrementUninfected();
+
                 }
             }
             if(numFleas>=2)
             {
                fleasToAdd = Mathf.RoundToInt(numFleas * fleasRepopulationPercentage);
             /*  Add Flea prefab to serialize field in population object
-              for(int z=0;z<=fleasToAdd;z++)
+              for(int z=1;z<=fleasToAdd;z++)
               {
                   Instantiate(fleas);
                   IncrementFleas();

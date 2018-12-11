@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4126493611164000}
   - component: {fileID: 212417392467550142}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: HumanRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 60205478575288710}
   - component: {fileID: 50342269441826166}
   - component: {fileID: 66346466255244684}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: RightCloseDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 60344041955559134}
   - component: {fileID: 50323585953293368}
   - component: {fileID: 66212688336977064}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: TopHumanDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 114792285000633300}
   m_Layer: 10
   m_Name: Rat
-  m_TagString: Uninfected
+  m_TagString: Rat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 60074328460224778}
   - component: {fileID: 50444989463156570}
   - component: {fileID: 66283034506543076}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: BottomCloseDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 60517984360254152}
   - component: {fileID: 50122871826891470}
   - component: {fileID: 66525421945798138}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: LeftHumanDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 60532079536960886}
   - component: {fileID: 50469076728901428}
   - component: {fileID: 66374966220399308}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: RightHumanDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 60000828829053942}
   - component: {fileID: 50957231558361996}
   - component: {fileID: 66048878353450760}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: UpCloseDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 60826581301131274}
   - component: {fileID: 50014351779943440}
   - component: {fileID: 66907864908763616}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: BottomHumanDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 60563524801900720}
   - component: {fileID: 50891276204812898}
   - component: {fileID: 66119761229107002}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: LeftCloseDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4869913596092870}
   - component: {fileID: 212884215080329856}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: RatRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4154,7 +4154,7 @@ MonoBehaviour:
   ratDetectRadius: 0
   humanDetectRadius: 0
   infectedRadius: 0
-  lifeSpan: 100
+  lifeSpan: 11
   spawnRate: 2
   directionUpdateTime: 0.5
   xMin: -1
