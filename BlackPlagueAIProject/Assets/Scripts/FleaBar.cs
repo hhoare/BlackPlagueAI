@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bar : MonoBehaviour {
+public class FleaBar : MonoBehaviour {
 
+    [SerializeField]
+    private RectTransform self;
 
-
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

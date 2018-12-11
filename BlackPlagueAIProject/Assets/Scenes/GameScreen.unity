@@ -1990,7 +1990,13 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 224553253414783712, guid: d78870e2eb8551b43b7aa310d9a21df4,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 92
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114718699669322884, guid: d78870e2eb8551b43b7aa310d9a21df4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d78870e2eb8551b43b7aa310d9a21df4, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &1232564136 stripped
@@ -2114,7 +2120,8 @@ Prefab:
       propertyPath: m_Name
       value: BarHolder (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114718699669322884, guid: d78870e2eb8551b43b7aa310d9a21df4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d78870e2eb8551b43b7aa310d9a21df4, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &1239412227 stripped
@@ -2365,7 +2372,8 @@ Prefab:
       propertyPath: m_Name
       value: BarHolder (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114718699669322884, guid: d78870e2eb8551b43b7aa310d9a21df4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d78870e2eb8551b43b7aa310d9a21df4, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &1584794149 stripped

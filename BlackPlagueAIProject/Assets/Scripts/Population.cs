@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Population : MonoBehaviour {
 
-    public int numRats;
-    public int numUninfected;
-    public int numFleas;
+    public static int numRats;
+    public static int numUninfected;
+    public static int numFleas;
 
     [SerializeField]
     private float timeToRepopulate;

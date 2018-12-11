@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BarChart : MonoBehaviour {
+public class HumanBar : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    private RectTransform self;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
