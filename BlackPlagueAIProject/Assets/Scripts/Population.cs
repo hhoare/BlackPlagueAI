@@ -42,6 +42,12 @@ public class Population : MonoBehaviour {
     private int uninfectedToAdd;
     private int fleasToAdd;
 
+    private float timeToAdd;
+
+    private void Start()
+    {
+        timeToAdd = timeToRepopulate;
+    }
 
     private void FixedUpdate()
     {
@@ -76,7 +82,7 @@ public class Population : MonoBehaviour {
             }
 
             Debug.Log("Current number of uninfected: " + numUninfected);
-            timeToRepopulate += Time.time;
+            timeToRepopulate += timeToAdd;
         }
     }
 
