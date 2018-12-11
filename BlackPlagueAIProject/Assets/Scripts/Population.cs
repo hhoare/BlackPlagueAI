@@ -50,21 +50,32 @@ public class Population : MonoBehaviour {
             checkNumberOfEntities();
             if(numRats>=2)
             {
-               ratsToAdd = Mathf.RoundToInt(numRats * ratRepopulationPercentage);
+               ratsToAdd = Mathf.RoundToInt(numRats * (1/ratRepopulationPercentage));
+                for (int x = 0; x <= ratsToAdd; x++)
+                {
+                    Instantiate(rat);
+                }
             }
             if(numUninfected>=2)
             {
-               uninfectedToAdd = Mathf.RoundToInt(numRats * uninfectedRepopulationPercentage);
+               uninfectedToAdd = Mathf.RoundToInt(numUninfected * (1/uninfectedRepopulationPercentage));
+                for (int y = 0; y <= uninfectedToAdd; y++)
+                {
+                    Instantiate(uninfected);
+                }
             }
             if(numFleas>=2)
             {
-               fleasToAdd = Mathf.RoundToInt(numFleas * fleasRepopulationPercentage);
+               fleasToAdd = Mathf.RoundToInt(numFleas * (1/fleasRepopulationPercentage));
+            /*  Add Flea prefab to serialize field in population object
+              for(int z=0;z<=fleasToAdd;z++)
+              {
+                  Instantiate(fleas);
+              }
+            */
             }
 
-            for(int x=0; x<=ratsToAdd;x++)
-            {
-                Instantiate(rat);
-            }
+            Debug.Log("Current number of uninfected: " + numUninfected);
             timeToRepopulate += Time.time;
         }
     }
