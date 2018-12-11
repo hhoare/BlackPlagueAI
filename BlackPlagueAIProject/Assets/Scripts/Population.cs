@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Population : MonoBehaviour {
 
-    public static int numRats;
-    public static int numUninfected;
-    public static int numFleas;
+    [SerializeField]
+    private int numRats=2;
+    [SerializeField]
+    private int numUninfected=4;
+    [SerializeField]
+    private int numInfected;
+    [SerializeField]
+    private int numFleas;
 
     [SerializeField]
     private float timeToRepopulate;
@@ -52,50 +57,85 @@ public class Population : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        CheckNumberOfEntities();
+       // CheckNumberOfEntities();
 
         if (Time.time>=timeToRepopulate)
         {
             
             if(numRats>=2)
             {
-               ratsToAdd = Mathf.RoundToInt(numRats * (1/ratRepopulationPercentage));
+               ratsToAdd = Mathf.RoundToInt(numRats * ratRepopulationPercentage);
                 for (int x = 0; x <= ratsToAdd; x++)
                 {
                     Instantiate(rat);
+                    IncrementRats();
                 }
             }
             if(numUninfected>=2)
             {
-               uninfectedToAdd = Mathf.RoundToInt(numUninfected * (1/uninfectedRepopulationPercentage));
+               uninfectedToAdd = Mathf.RoundToInt(numUninfected * uninfectedRepopulationPercentage);
                 for (int y = 0; y <= uninfectedToAdd; y++)
                 {
                     Instantiate(uninfected);
+                    IncrementUninfected();
                 }
             }
             if(numFleas>=2)
             {
-               fleasToAdd = Mathf.RoundToInt(numFleas * (1/fleasRepopulationPercentage));
+               fleasToAdd = Mathf.RoundToInt(numFleas * fleasRepopulationPercentage);
             /*  Add Flea prefab to serialize field in population object
               for(int z=0;z<=fleasToAdd;z++)
               {
                   Instantiate(fleas);
+                  IncrementFleas();
               }
             */
             }
-
-            Debug.Log("Current number of uninfected: " + numUninfected);
+            
             timeToRepopulate += timeToAdd;
         }
     }
 
-
+    /*
     private void CheckNumberOfEntities()
     {
         numRats = objectFinder.OverlapCollider(ratFilter, ratDetection);
         numUninfected = objectFinder.OverlapCollider(uninfectedFilter, uninfectedDetection);
         numFleas = objectFinder.OverlapCollider(fleasFilter, fleasDetection);
     }
+    */
 
+    public void IncrementRats()
+    {
+        numRats++;
+    }
+    public void IncrementUninfected()
+    {
+        numUninfected++;
+    }
+    public void IncrementInfected()
+    {
+        numInfected++;
+    }
+    public void IncrementFleas()
+    {
+        numFleas++;
+    }
 
+    public void DecrementRats()
+    {
+        numRats--;
+    }
+    public void DecrementUninfected()
+    {
+        numUninfected--;
+    }
+    public void DecrementInfected()
+    {
+        numInfected--;
+    }
+    public void DecrementFleas()
+    {
+        numFleas--;
+    }
 }
