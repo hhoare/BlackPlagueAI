@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +26,8 @@ public class Human : MonoBehaviour
     private float xMax = 1;
     [SerializeField]
     private float yMin = -1;
+    
+
     [SerializeField]
     private float yMax = 1;
 
@@ -184,7 +187,15 @@ public class Human : MonoBehaviour
     {
         var x = Random.Range(xMin, xMax);
         var y = Random.Range(yMin, yMax);
-        return new Vector2(x*speed, y*speed);
+        if(gameObject.layer==12) //If current object is infected
+        {
+            return new Vector2(x * (speed / 2), y * (speed / 2)); //Moves half as fast
+        }
+        else //Otherwise
+        { 
+            return new Vector2(x * speed, y * speed);
+        }
+
     }
 
     private void ColliderCheck() //Used to check whether or not there are rats/uninfected/infected in range
