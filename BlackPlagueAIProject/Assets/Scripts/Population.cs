@@ -82,13 +82,13 @@ public class Population : MonoBehaviour {
             if(numFleas>=2)
             {
                fleasToAdd = Mathf.RoundToInt(numFleas * fleasRepopulationPercentage);
-            /*  Add Flea prefab to serialize field in population object
+            //  Add Flea prefab to serialize field in population object
               for(int z=1;z<=fleasToAdd;z++)
               {
                   Instantiate(fleas);
                   IncrementFleas();
               }
-            */
+            
             }
             
             timeToRepopulate += timeToAdd;
