@@ -7,12 +7,12 @@ public class RatBar : MonoBehaviour {
     [SerializeField]
     private RectTransform self;
 
-    private int height;
+    private float height;
 	
 	// Update is called once per frame
-	void Update () {
-        
-
-		self.sizeDelta = new Vector2(self.sizeDelta.x, 100);
+	void Update()
+    {
+        height = (Population.numRats * 92) / 50;
+        self.sizeDelta = new Vector2(self.sizeDelta.x, height);
     }
 }

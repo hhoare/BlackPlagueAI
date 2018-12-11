@@ -7,13 +7,12 @@ public class HumanBar : MonoBehaviour {
     [SerializeField]
     private RectTransform self;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private float height;
+
+    // Update is called once per frame
+    void Update()
+    {
+        height = (Population.numUninfected * 92) / 50;
+        self.sizeDelta = new Vector2(self.sizeDelta.x, height);
+    }
 }

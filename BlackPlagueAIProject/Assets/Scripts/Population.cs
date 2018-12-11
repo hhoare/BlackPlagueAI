@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class Population : MonoBehaviour {
 
-    [SerializeField]
-    private int numRats=2;
-    [SerializeField]
-    private int numUninfected=4;
-    [SerializeField]
-    private int numInfected;
-    [SerializeField]
-    private int numFleas;
+    
+    public static int numRats=2;
+    public static int numUninfected=4;
+    public static int numInfected;
+    public static int numFleas;
 
     [SerializeField]
     private float timeToRepopulate;
