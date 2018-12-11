@@ -12,7 +12,7 @@ public class HumanBar : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        height = (Population.numUninfected * 92) / 20;
+        height = ((Population.numUninfected + Population.numInfected) * 92) / 20;
         self.sizeDelta = new Vector2(self.sizeDelta.x, height);
     }
 }
